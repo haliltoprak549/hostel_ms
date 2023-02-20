@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="form-group">
-          <select id="misafir_sirala" onchange="javascript:misafir_sirala();"
+          <select id="misafir_sirala" onchange="javascript:misafir_tablo_yenile();"
             class="form-control">
             <option value="">ID'ye göre sırala</option>
             <option value="isme_gore">İsme Göre Sırala</option>
@@ -15,7 +15,7 @@
       </div>
       <div class="col-lg-4">
         <div class="form-group">
-          <select id="oda_ara" onchange="javascript:misafir_sirala();" class="form-control">
+          <select id="oda_ara" onchange="javascript:misafir_tablo_yenile();" class="form-control">
             <option value="">----Oda Ara----</option>
             <?php
             include('functions/database_connection.php');
@@ -36,7 +36,7 @@
       <div class="col-lg-4">
         <div class="input-group">
           <input id="isim_ara" type="text" name="isim_ara" placeholder="Misafir Ara..." class="form-control">
-          <button type="button" onclick="javascript:misafir_sirala()"
+          <button type="button" onclick="javascript:misafir_tablo_yenile()"
             class="btn btn-primary">Misafir Ara</button>
         </div>
       </div>

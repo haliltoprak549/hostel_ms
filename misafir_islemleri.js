@@ -12,7 +12,11 @@ function misafir_tpl_yukle() {
   });
 }
 
-function misafir_tablo_yenile(query) {
+function misafir_tablo_yenile() {
+
+  var query = misafir_sirala();
+  console.log(query);
+
   $.ajax({
     type: "POST",
     url: 'functions/misafir_listele.php',
@@ -28,21 +32,26 @@ function misafir_tablo_yenile(query) {
   });
 }
 
-function misafir_sirala(query) {
+function misafir_sirala() {
   var query = "SELECT m.id, o.oda_no, m.adi_soyadi, m.adi_soyadi, m.tc_no, m.geldigi_il, m.gorevi, m.tlf_no, m.giris_tarihi, m.cikis_tarihi, m.aktif, m.aciklama, m.cocuk FROM misafirler AS m LEFT JOIN odalar AS o ON m.oda_id = o.id ";
 
-  var sirala = document.getElementById('misafir_sirala').value;
-  var oda_ara = document.getElementById('oda_ara').value;
-  var isim_ara = document.getElementById('isim_ara').value;
+  try {
+    var sirala = document.getElementById('misafir_sirala').value;
+    var oda_ara = document.getElementById('oda_ara').value;
+    var isim_ara = document.getElementById('isim_ara').value;
+
+    if (isim_ara !== '') query += "WHERE m.adi_soyadi LIKE \"%" + isim_ara + "%\" ";
+    else if (oda_ara !== '') query += "WHERE o.oda_no LIKE \"%" + oda_ara + "%\" ";
+
+    if (sirala == 'isme_gore') query += "ORDER BY m.adi_soyadi;";
+    else if (sirala == 'tc_noya_gore') query += "ORDER BY m.tc_no;";
+    else if (sirala == 'oda_noya_gore') query += "ORDER BY o.oda_no;";
+  }
+  catch (err) {
+    console.log('Sıralama değerleri girilmedi.');
+  }
   
-  if (isim_ara !== '') query += "WHERE m.adi_soyadi LIKE \"%" + isim_ara + "%\" ";
-  else if (oda_ara !== '') query += "WHERE o.oda_no LIKE \"%" + oda_ara + "%\" ";
-
-  if (sirala == 'isme_gore') query += "ORDER BY m.adi_soyadi;";
-  else if (sirala == 'tc_noya_gore') query += "ORDER BY m.tc_no;";
-  else if (sirala == 'oda_noya_gore') query += "ORDER BY o.oda_no;";
-
-  misafir_tablo_yenile(query);
+  return query;
 }
 
 function misafir_duzenle_sayfasi(id, oda_no, adi_soyadi, tc_no, geldigi_il, gorevi, tlf_no, giris_tarihi, cikis_tarihi, aktif, aciklama, cocuk) {
