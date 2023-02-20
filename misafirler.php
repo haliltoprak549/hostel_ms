@@ -23,9 +23,12 @@
 
   <script type="text/javascript">
     // On Load
-    misafir_tpl_yukle();
-    misafir_tablo_yenile();
     load_navbar();
+    misafir_tpl_yukle();
+    
+    var query = "SELECT m.id, o.oda_no, m.adi_soyadi, m.adi_soyadi, m.tc_no, m.geldigi_il, m.gorevi, m.tlf_no, m.giris_tarihi, m.cikis_tarihi, m.aktif, m.aciklama, m.cocuk FROM misafirler AS m LEFT JOIN odalar AS o ON m.oda_id = o.id ";
+    
+    misafir_tablo_yenile(query);
   </script>
 
   <title>Misafirler</title>
@@ -41,6 +44,6 @@
     <span id="div_tablo"><!-- Guests Table --></span>
   </span>
   <span id="body2"></span>
-</span>
+  </span>
 
 </html>

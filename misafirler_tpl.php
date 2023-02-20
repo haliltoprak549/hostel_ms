@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="form-group">
-          <select id="misafir_sirala" onchange="javascript:misafir_sirala();" class="form-control">
+          <select id="misafir_sirala" onchange="javascript:misafir_sirala();"
+            class="form-control">
             <option value="">ID'ye göre sırala</option>
             <option value="isme_gore">İsme Göre Sırala</option>
             <option value="tc_noya_gore">T.C. Kimlik Numarasına Göre Sırala</option>
@@ -33,12 +34,11 @@
         </div>
       </div>
       <div class="col-lg-4">
-        <form action="misafirler.php" method="post">
-          <div class="input-group">
-            <input type="text" name="isim_ara" placeholder="Misafir Ara..." class="form-control">
-            <button type="submit" class="btn btn-primary">Misafir Ara</button>
-          </div>
-        </form>
+        <div class="input-group">
+          <input id="isim_ara" type="text" name="isim_ara" placeholder="Misafir Ara..." class="form-control">
+          <button type="button" onclick="javascript:misafir_sirala()"
+            class="btn btn-primary">Misafir Ara</button>
+        </div>
       </div>
     </div>
   </div>
